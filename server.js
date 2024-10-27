@@ -32,8 +32,12 @@ const logger = require('./middleware/requestLogger');
 
 console.log(`\n\nprocess.env.POSTGRES_HOST:\n${process.env.POSTGRES_HOST}\n\nprocess.env.POSTGRES_USER:\n${process.env.POSTGRES_USERNAME}\n\nprocess.env.POSTGRES_PASSWORD:\n${process.env.POSTGRES_PASSWORD}\n\n\nprocess.env.POSTGRES_DB:\n${process.env.POSTGRES_DB}\n\n\nprocess.env.POSTGRES_PORT:\n${process.env.POSTGRES_PORT}\n\nprocess.env.NODE_ENV:\n${process.env.NODE_ENV}\n`);
 
-// Express middleware
-/* Local dev Middleware for CORS (Cross-Origin-Resource-Sharing) */
+/* setting Request Body size limit to 100MB */
+app.use(bodyParser.json({ limit: '100mb' }));
+
+/* Session cookies */
+/*
+// Local dev Middleware for CORS (Cross-Origin-Resource-Sharing)
 const corsOptions = {
     origin: isProduction ? 'https://ai-recognition-frontend.onrender.com' : 'http://localhost:3000',
     credentials: true, // to support session cookies
@@ -48,10 +52,8 @@ app.use(cors(corsOptions));
 //     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept']
 // };
 
-app.use(bodyParser.json({ limit: '100mb' }));
 app.use(cookieParser());
 
-/* Session cookies */
 app.use(session({
     secret: 'secret', // Secret key to sign the session ID cookie
     resave: false, // Do not force the session to be saved back to session store
@@ -66,7 +68,7 @@ app.use(session({
     } // Use `secure: true` if you are using https
 }));
 
-/* Handling User's 'signin' from React */
+// Handling User's 'signin' from React
 app.get('/api/get-user-data', (req, res) => {
     console.log(`\nSession: `, req.session);
     if (req.session && req.session.user) {
@@ -75,6 +77,10 @@ app.get('/api/get-user-data', (req, res) => {
         res.status(401).json({ error: `Not authenticated` });
     }
 });
+*/
+
+/* localStorage */
+app.use(cors());
 
 // Will need either app.use(express.json()) || app.use(bodyParser.json()) to parse json 
 app.use(express.json()); 

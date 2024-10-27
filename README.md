@@ -32,7 +32,7 @@
 <br>
 <h3>Clarifai now offers GPT-4 model too :D</h3>
 <img src="./assets/Clarifai-GPT-4-model.jpeg" alt="clarifai" />
-<br>
+<br />
 
 <h3>Puppeteer is a Web Scraping tool used in Node.js</h3>
 <h3>It leverages outerHTML to scrap data & images from any websites</h3>
